@@ -1,7 +1,6 @@
 ![MenuDocs AdvancedBanner](MenuDocs.jpg "MDAdv")
 
-Hello, im a bot inspired by the [MenuDocs JS Tutorial Bot](https://youtube.com/).  
-Im currently owned & being developed by `2D#5773`
+Hello, i'm a bot made to show the viewers of [MenuDocs] what is possible with the [discord.js](https://discord.js.org/) library and more.
 
 # Links
 
