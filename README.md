@@ -5,7 +5,7 @@ Im currently owned & being developed by `2D#5773`
 
 # Links
 
-Here are some links that are associated with `[MenuDocs] Advanced`  
+Here are some links that are associated with `[MenuDocs] Advanced`us
 [[MenuDocs] Discord](https://discord.gg/MgVaazZ)  
 [[MenuDocs] Website](https://menudocs.org/)  
 [DefyCentral's Discord](https://discord.gg/FHR2msy)  
@@ -24,6 +24,6 @@ Library's Used:
 
 ## Credits
 
-**Big thanks to [Duncan Sterkan](https://twitter.com/duncte123) for letting me use his lavalink node.**  
+**Big thanks to [Duncan Sterkan](https://twitter.com/duncte123) for letting us use his lavalink node.**  
 **Thanks to [2D](https://twitter.com/The2DPerson) for being smart enough to code this beast**  
 **Thanks to [Connor Strand](https://twitter.com/Strandable) for supporting this project.**  
