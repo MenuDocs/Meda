@@ -7,7 +7,7 @@ Hello, i'm a bot made to show the viewers of [MenuDocs] what is possible with th
 Here are some links that are associated with `[MenuDocs] Advanced`  
 [[MenuDocs] Discord](https://discord.gg/MgVaazZ, 'Link to the official Discord Server.')  
 [[MenuDocs] Website](https://menudocs.org/, 'Link to the official Website.')  
-[DefyCentral's Discord](https://discord.gg/FHR2msy, 'Link to the 2D's guild.')  
+[DefyCentral Discord](https://discord.gg/FHR2msy, 'Link to the 2D\'s guild.')  
 
 ## Information
 
