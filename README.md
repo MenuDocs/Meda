@@ -4,7 +4,7 @@ Hello, i'm a bot made to show the viewers of [MenuDocs] what is possible with th
 
 # Links
 
-Here are some links that are associated with `[MenuDocs] Advanced`us
+Here are some links that are associated with `[MenuDocs] Advanced`  
 [[MenuDocs] Discord](https://discord.gg/MgVaazZ)  
 [[MenuDocs] Website](https://menudocs.org/)  
 [DefyCentral's Discord](https://discord.gg/FHR2msy)  
