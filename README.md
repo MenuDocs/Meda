@@ -1,5 +1,24 @@
 ![MenuDocs AdvancedBanner](MenuDocs.jpg "MDAdv")
 
+<div align="center">
+<a href="https://discord.gg/MgVaazZ">
+<img src="https://img.shields.io/discord/543812119397924886.svg?style=for-the-badge&colorB=7289DA" alt="Support">
+</a>
+<a href="https://github.com/MenuDocs/Advanced-Bot">
+<img src="https://img.shields.io/codacy/grade/1d6a392433314460ad5082ec5ce97151.svg?style=for-the-badge">
+</a>
+<a href="https://github.com/MenuDocs/Advanced-Bot">
+<img src="https://img.shields.io/github/languages/top/MenuDocs/Advanced-Bot.svg?style=for-the-badge">
+</a>
+<a href="https://github.com/ionadev/image-gen-api/issues">
+<img src="https://img.shields.io/github/issues/MenuDocs/Advanced-Bot.svg?style=for-the-badge">
+</a>
+<a href="https://github.com/ionadev/image-gen-api/pulls">
+<img src="https://img.shields.io/github/issues-pr/MenuDocs/Advanced-Bot.svg?style=for-the-badge">
+</a>
+<br>
+</div>
+
 This Repository is dedicated to the display of JS/DJS knowledge. The code is showing what is possible with the [discord.js](https://discord.js.org/ 'Discord.JS Official Documentation') library and more.
 
 # Links
