@@ -1,6 +1,6 @@
 ![MenuDocs AdvancedBanner](MenuDocs.jpg "MDAdv")
 
-This repository is dedicated to the display of JS/DJS knowledge. The code is showing what is possible with the [discord.js](https://discord.js.org/, 'Discord.JS Official Documentation') library and more.
+This Repository is dedicated to the display of JS/DJS knowledge. The code is showing what is possible with the [discord.js](https://discord.js.org/, 'Discord.JS Official Documentation') library and more.
 
 # Links
 
@@ -16,10 +16,10 @@ YouTube might block your lavalink node because of yt searching, so i'm using sim
 
 Library's Used:
 
-- **[discord.js-lavalink v3](https://npmjs.com/discord.js-lavalink, 'NPM Package download link') -** `for the lavalink client.`
-- **[betalogger](https://npmjs.com/betalogger, 'NPM Package download link') -** `for the bot, music, & database logger.`
-- **[discord.js](https://npmjs.com/discord.js, 'NPM Package download link') -** `for the connection to the discord api.`
-- **[glob](https://npmjs.com/glob, 'NPM Package download link') -** `for the categorized commands directory support.`
+- **[discord.js-lavalink v3](https://npmjs.com/discord.js-lavalink 'NPM Package download link') -** `for the lavalink client.`
+- **[betalogger](https://npmjs.com/betalogger 'NPM Package download link') -** `for the bot, music, & database logger.`
+- **[discord.js](https://npmjs.com/discord.js 'NPM Package download link') -** `for the connection to the discord api.`
+- **[glob](https://npmjs.com/glob 'NPM Package download link') -** `for the categorized commands directory support.`
 
 ## Credits
 
