@@ -4,6 +4,9 @@
 <a href="https://discord.gg/MgVaazZ">
 <img src="https://img.shields.io/discord/416512197590777857.svg?style=for-the-badge&colorB=7289DA" alt="Support">
 </a>
+<a href="https://github.com/MenuDocs/Advanced-Bot/blob/master/LICENSE">
+<img src="https://img.shields.io/github/license/MenuDocs/Advanced-Bot.svg?style=for-the-badge">
+</a>
 <a href="https://github.com/MenuDocs/Advanced-Bot">
 <img src="https://img.shields.io/codacy/grade/1d6a392433314460ad5082ec5ce97151.svg?style=for-the-badge">
 </a>
