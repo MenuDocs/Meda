@@ -1,6 +1,6 @@
 ![MenuDocs AdvancedBanner](MenuDocs.jpg "MDAdv")
 
-This Repository is dedicated to the display of JS/DJS knowledge. The code is showing what is possible with the [discord.js](https://discord.js.org/, 'Discord.JS Official Documentation') library and more.
+This repository is dedicated to the display of JS/DJS knowledge. The code is showing what is possible with the [discord.js](https://discord.js.org/, 'Discord.JS Official Documentation') library and more.
 
 # Links
 
