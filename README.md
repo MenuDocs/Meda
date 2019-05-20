@@ -1,13 +1,13 @@
 ![MenuDocs AdvancedBanner](MenuDocs.jpg "MDAdv")
 
-This Repository is dedicated to the display of JS/DJS knowledge. The code is showing what is possible with the [discord.js](https://discord.js.org/, 'Discord.JS Official Documentation') library and more.
+This Repository is dedicated to the display of JS/DJS knowledge. The code is showing what is possible with the [discord.js](https://discord.js.org/ 'Discord.JS Official Documentation') library and more.
 
 # Links
 
 Here are some links that are associated with `[MenuDocs] Advanced`  
-[[MenuDocs] Discord](https://discord.gg/MgVaazZ, 'Link to the official Discord Server.')  
-[[MenuDocs] Website](https://menudocs.org/, 'Link to the official Website.')  
-[DefyCentral Discord](https://discord.gg/FHR2msy, 'Link to the 2D\'s guild.')  
+[[MenuDocs] Discord](https://discord.gg/MgVaazZ 'Link to the official Discord Server.')  
+[[MenuDocs] Website](https://menudocs.org/ 'Link to the official Website.')  
+[DefyCentral Discord](https://discord.gg/FHR2msy 'Link to the 2D\'s guild.')  
 
 ## Information
 
