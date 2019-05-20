@@ -23,6 +23,6 @@ Library's Used:
 
 ## Credits
 
-**Big thanks to [Duncan Sterkan](https://twitter.com/duncte123, 'Duncte123 - Twitter Account') for letting us use his lavalink node.**  
-**Thanks to [2D](https://twitter.com/The2DPerson, 'The2DPerson - Twitter Account') for being smart enough to code this beast**  
-**Thanks to [Connor Strand](https://twitter.com/Strandable, 'Strandable - Twitter Account') for supporting this project.**  
+**Big thanks to [Duncan Sterkan](https://twitter.com/duncte123 'Duncte123 - Twitter Account') for letting us use his lavalink node.**  
+**Thanks to [2D](https://twitter.com/The2DPerson 'The2DPerson - Twitter Account') for being smart enough to code this beast**  
+**Thanks to [Connor Strand](https://twitter.com/Strandable 'Strandable - Twitter Account') for supporting this project.**  
