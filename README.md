@@ -1,6 +1,6 @@
 ![MenuDocs AdvancedBanner](MenuDocs.jpg "MDAdv")
 
-Hello, i'm a bot made to show the viewers of [MenuDocs] what is possible with the [discord.js](https://discord.js.org/, 'Discord.JS Official Documentation') library and more.
+This Repository is dedicated to the display of JS/DJS knowledge. The code is showing what is possible with the [discord.js](https://discord.js.org/, 'Discord.JS Official Documentation') library and more.
 
 # Links
 
