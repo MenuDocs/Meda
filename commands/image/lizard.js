@@ -22,7 +22,7 @@ module.exports = {
         fetch("https://nekos.life/api/v2/img/lizard")
             .then(res => res.json())
             .then(data => {
-                message.channel.send(new Discord.RichEmbed().setImage(data.url).setColor("203145").setAuthor(client.user.username, client.user.displayAvatarURL));
+                message.channel.send(client.embed.image(data.url).setAuthor(client.user.username, client.user.displayAvatarURL));
             });
     }
 }

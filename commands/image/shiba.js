@@ -22,7 +22,7 @@ module.exports = {
         fetch("http://shibe.online/api/shibes")
             .then(res => res.json())
             .then(data => {
-                message.channel.send(new Discord.RichEmbed().setImage(data[0]).setColor("203145").setAuthor(client.user.username, client.user.displayAvatarURL));
+                message.channel.send(client.embed.image(data[0]).setAuthor(client.user.username, client.user.displayAvatarURL));
             });
     }
 }

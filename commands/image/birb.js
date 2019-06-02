@@ -22,7 +22,7 @@ module.exports = {
         fetch("https://api.alexflipnote.dev/birb")
             .then(res => res.json())
             .then(data => {
-                message.channel.send(new Discord.RichEmbed().setImage(data.file).setColor("203145").setAuthor(client.user.username, client.user.displayAvatarURL));
+                message.channel.send(client.embed.image(data.file).setAuthor(client.user.username, client.user.displayAvatarURL));
             });
     }
 }

@@ -22,7 +22,7 @@ module.exports = {
         fetch("https://randomfox.ca/floof/")
         .then(res => res.json())
         .then(data => {
-            message.channel.send(new Discord.RichEmbed().setImage(data.image).setColor("203145").setAuthor(client.user.username, client.user.displayAvatarURL));
+            message.channel.send(client.embed.image(data.image).setAuthor(client.user.username, client.user.displayAvatarURL));
         });
     }
 }

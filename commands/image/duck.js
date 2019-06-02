@@ -22,7 +22,7 @@ module.exports = {
         fetch("https://apis.duncte123.me/animal/duck")
             .then(res => res.json())
             .then(data => {
-                message.channel.send(new Discord.RichEmbed().setImage(data.data.file).setColor("203145").setAuthor(client.user.username, client.user.displayAvatarURL));
+                message.channel.send(client.embed.image(data.data.file).setAuthor(client.user.username, client.user.displayAvatarURL));
             });
     }
 }

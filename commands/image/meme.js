@@ -21,6 +21,8 @@ module.exports = {
     run: async (client, message, args) => {
         fetch("https://some-random-api.ml/meme")
             .then(res => res.json())
-            .then(data => message.channel.send(client.embed.image(data.url).setAuthor(client.user.username, client.user.displayAvatarURL)));
+            .then(data => {
+                message.channel.send(client.embed.image(data.url).setAuthor(client.user.username, client.user.displayAvatarURL));
+            });
     }
 }

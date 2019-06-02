@@ -22,7 +22,7 @@ module.exports = {
         fetch("https://api.thecatapi.com/v1/images/search")
             .then(res => res.json())
             .then(data => {
-                message.channel.send(new Discord.RichEmbed().setImage(data[0].url).setColor("203145").setAuthor(client.user.username, client.user.displayAvatarURL));
+                message.channel.send(client.embed.image(data[0].url).setAuthor(client.user.username, client.user.displayAvatarURL));
             });
     }
 }
