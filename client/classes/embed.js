@@ -1,5 +1,5 @@
 /**
- *  HryraUtils: Are Liscensed Under DEFYDevelopment & WastedDevelopment
+ *  HryraUtils: JavaScript Version by: MeLike2D
  *  EmbedUtils: JAVA Original Owned By: Duncte123 or Duncan Sterken; Owner of DuncteBot
  *
  */
