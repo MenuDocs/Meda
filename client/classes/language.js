@@ -1,3 +1,6 @@
+/**
+* language.js by WarHammer414
+*/
 const { readFileSync, readdir } = require('fs')
 const languages = module.exports.languages = new Map()
 class Language {
