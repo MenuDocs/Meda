@@ -9,6 +9,10 @@ module.exports = {
     defvolume: { type: Number, default: 50 },
     logchannel: { type: String, default: '0' },
     cmdchannel: { type: String, default: '0' },
-    swearfilter: { type: Boolean },
-    invitefilter: { type: Boolean }
-}
+    swearfilter: { type: Boolean, default: false },
+    invitefilter: { type: Boolean, default: false },
+    leavechannel: { type: String, default: '0' },
+    leavemessage: { type: String, default: 'Goodbye **{membertag}**.' },
+    welcomechannel: { type: String, default: '0'},
+    welcomemessage: { type: String, default: 'Welcome **{membermention}** to **{guildname}**.' }
+};

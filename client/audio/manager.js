@@ -78,7 +78,6 @@ class AudioManager {
                     guild: message.guild.id,
                     channel: message.member.voice.channel.id
                 });
-                Player.volume(await this.db.getGuild(message.guild.id, 'defvolume'));
                 resolve(Player);
             } catch (error) {
                 this.log.error(`Ran into an error: ${error}`);
@@ -359,7 +358,7 @@ class AudioManager {
                 player.last.push(curr);
                 player.current = last;
 
-                this.play(player.current, message);
+                player.play(player.current.track);
                 resolve(player);
             } catch (error) {
                 this.log.error(`Ran into an error: ${error}`);
