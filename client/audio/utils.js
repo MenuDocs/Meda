@@ -60,13 +60,13 @@ module.exports = {
     /**
      * This wil format our current player time in this format: mm:ss
      *
-     * @param { Number } duration how far we are in the track
+     * @param { Number } time how far we are in the track
      * @author Duncan Sterkan (duncte123)
      * @returns our formatted time
      */
-    format: Number.prototype.format = function() {
-        var minutes = Math.floor(parseInt(this) / 60000);
-        var seconds = ((parseInt(this) % 60000) / 1000).toFixed(0);
+    formatTime: function(time) {
+        var minutes = Math.floor(time / 60000);
+        var seconds = ((time % 60000) / 1000).toFixed(0);
         return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     }
 
