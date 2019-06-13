@@ -3,6 +3,8 @@
  * Courtesy of Duncan Sterkan for having his original java code open source 
  * 
  * @author Duncan Sterkan (duncte123): Original Version | MeLike2D: JavaScript Version
+ * 
+ * Link to original code: https://github.com/DuncteBot/SkyBot/blob/master/src/main/java/ml/duncte123/skybot/utils/MusicEmbedUtils.java
  */
 
 const format = require('../util/string').format
