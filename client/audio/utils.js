@@ -61,7 +61,7 @@ module.exports = {
      * This wil format our current player time in this format: mm:ss
      *
      * @param { Number } time how far we are in the track
-     * @author Duncan Sterkan (duncte123)
+     * @author MeLike2D
      * @returns our formatted time
      */
     formatTime: function(time) {
