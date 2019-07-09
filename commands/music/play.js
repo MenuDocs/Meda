@@ -1,37 +1,31 @@
-module.exports = {
-    config: {
-        name: "play",
-        desc: "plays a specified song",
-        group: "music",
-        usage: "<query>",
-        aliases: ["p"],
-        guildOnly: true,
-        ownerOnly: false,
-        userPerms: [],
-        clientPerms: []
-    },
+const { CordCommand } = require('cordclient');
+module.exports = class extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: 'play',
+            desc: 'plays music in your vc',
+            group: 'music',
+            guildBound: true
+        });
+    };
 
-    /**
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').Message} message
-     * @param {String[]} args
-     */
-    run: async (client, message, args) => {
-        let audio = client.audio;
-        let player = client.audio.get(message.guild.id);
-        let url = args[0] ? args[0].replace(/<(.+)>/g, '$1') : '';
-        let search = args.join(" ");
-
-        if (!player) return message.send(client.lang.get('commands.music.no_player'), audio.embed);
-        if (!message.member.voice.channel || !message.member.voice.channel.members.has(client.user.id)) return message.send(client.lang.get('commands.music.!in_my_vc'), audio.embed);
-
+    async run(message, args, client) {
         let video;
-        if(url.match(/^https:?:\/\/\/(www.youtube.com|youtube.com|youtu.be)\/watch(.*)$/g)) video = await audio.lavaSearch(message, search, 1);
-        else if(url.match(/^.*(youtu.be\/|list=)([^#\&\?]*).*/)) return message.send(client.lang.get('commands.music.no_support').format(["Playlists"]), audio.embed);
-        else if(url.match(/^(https|http):?:\/\/\/soundcloud.com\//g)) video = await audio.lavaSearch(message, search, 1);
-        else if(url.match(/^(https|http)\:\/\/open\.spotify\.com\/track\/.+/g)) video = await audio.lavaSearch(message, search, 1);
-        else video = await audio.ytSearch(message, search, 1);
+        let search = args.join(" ");
+        let player = message.guild.player;
 
-        return audio.handleTrack(video[0], message);
-    }
-};
+        if (this.flags.includes('--join')) [await client.audio.join(message), player = message.guild.player];
+        if (!player) return this.send(this.locale.get('commands.music.no_player'), client.audio.embed);
+        if (!player.channel.members.has(message.author.id)) return this.send(this.locale.get('commands.music.!in_my_vc'), client.audio.embed);
+
+        if(search.match(/^https:?:\/\/\/(www.youtube.com|youtube.com|youtu.be)\/watch(.*)$/g)) video = await client.audio.getTrack(search, 1);
+        else if(search.match(/^.*(youtu.be\/|list=)([^#\&\?]*).*/)) return this.send(this.locale.get('commands.music.no_support').format(["Playlists"]), client.audio.embed);
+        else if(search.match(/^(https|http):?:\/\/\/soundcloud.com\//g)) video = await client.audio.getTrack(search, 1);
+        else if(search.match(/^(https|http)\:\/\/open\.spotify\.com\/track\/.+/g)) video = await client.audio.getTrack(search, 1);
+        else video = await client.audio.search(search, message);
+
+        if ((Array.isArray(video) ? video[0] : video).length >= 900000) return this.send(this.locale.get('commands.music.song_exceeds_length'), client.audio.embed)
+
+        return client.audio.handleTrack(message, Array.isArray(video) ? video[0] : video);
+    };
+}

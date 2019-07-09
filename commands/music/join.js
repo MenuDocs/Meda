@@ -1,29 +1,20 @@
-module.exports = {
-    config: {
-        name: "join",
-        desc: "joins your voice channel",
-        group: "music",
-        usage: "",
-        aliases: ["j", "summon"],
-        guildOnly: true,
-        ownerOnly: false,
-        userPerms: [],
-        clientPerms: []
-    },
+const { CordCommand } = require("cordclient");
+module.exports = class extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: "join",
+            desc: "Joins your voice channel",
+            group: "music",
+        });
+    };
 
-    /**
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').Message} message
-     * @param {String[]} args
-     */
-    run: async (client, message, args) => {
-        let audio = client.audio;
-        let player = client.audio.get(message.guild.id);
+    async run(message, args, client) {
+        let player = message.guild.player
 
-        if (player) return message.send(client.lang.get('commands.music.ac_player'), audio.embed);
-        if (!message.member.voice.channel) return message.send(client.lang.get('commands.music.!in_my_vc'), audio.embed);
+        if (player) return this.send(this.locale.get("commands.music.ac_player"), client.audio.embed);
+        if (!message.member.voice.channel) return this.send(this.locale.get("commands.music.join_vc"), client.audio.embed);
 
-        audio.join(message);
-        return message.send(client.lang.get('commands.music.joined_vc').format([message.member.voice.channel.name]), audio.embed);
-    }   
-};
+        client.audio.join(message);
+        return this.send(this.locale.get("commands.music.joined_vc").format([message.member.voice.channel.name]), client.audio.embed);
+    };
+}

@@ -1,28 +1,26 @@
-module.exports = {
-    config: {
-        name: "volume",
-        desc: "Sets the volume of the player.",
-        usage: "[number]",
-        group: "music",
-        aliases: ["vol"],
-        guildOnly: true,
-        ownerOnly: false,
-        userPerms: [],
-        clientPerms: []
-    },
+const { CordCommand } = require('cordclient');
+module.exports = class volume extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: "volume",
+            desc: "changes or gives you the current volume of the player.",
+            usage: "[5-100]",
+            group: "music",
+            aliases: ['vol'],
+            guildBound: true,
+        });
+    };
 
-    run: async (client, message, args) => {
-        let vc = message.member.voice.channel;
-        let audio = client.audio;
+    async run(message, args, client) {
+        let player = message.guild.player;
         let volume = parseInt(args[0]);
-        let player = audio.get(message.guild.id);
 
-        if (!player) return message.send(client.lang.get('commands.music.no_player'), audio.embed);
-        if (!volume) return message.send(client.lang.get('commands.music.cur_volume').format([player.state.volume]), audio.embed);
-        if (!vc || !vc.members.has(client.user.id)) return message.send(client.lang.get('commands.music.!in_my_vc'), audio.embed);
-        if (!volume.between(1, 100)) return message.send(client.lang.get('commands.music.volume_1-100').format(['1-100']), audio.embed);
+        if (!player) return this.send(this.locale.get('commands.music.no_player'), client.audio.embed);
+        if (!volume) return this.send(this.locale.get('commands.music.cur_volume').format([player.state.volume]), client.audio.embed);
+        if (!player.channel.members.has(message.author.id)) return this.send(this.locale.get('commands.music.!in_my_vc'), client.audio.embed);
+        if (!volume.between(5, 100)) return this.send(this.locale.get('commands.music.volume_limit').format(['5-100']), client.audio.embed);
 
         await player.volume(volume);
-        return message.send(client.lang.get('commands.music.new_volume').format([volume]), audio.embed);
-    }
+        return this.send(this.locale.get('commands.music.new_volume').format([volume]), client.audio.embed);
+    };
 };

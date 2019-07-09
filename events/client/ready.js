@@ -1,25 +1,29 @@
-const utils = require('../../client/index.js');
-const RichEmbed = require('discord.js').MessageEmbed;
-module.exports = {
-    name: "ready", 
-    run: async client => {
-        /** Getting the Utils */
-        client.db = new utils.MongoHandler(client);
-        client.log = new utils.Colored({process_name:"MENUDOCS", process_color: "blue"});
-        client.find = new utils.FinderUtil();
-        client.lang = utils.Language;
-        client.embed = new utils.EmbedUtil();
-        client.audio = new utils.AudioUtil(client);
-        client.plugins = new utils.PluginHandler(client);
+const { MessageEmbed } = require('discord.js');
+const { CordEvent } = require('cordclient');
+const MedaAudio = require('../../audio/index')
+const config = require('../../utils/config.js').audio;
+const MedaDB = require('../../utils/database');
+require('../../utils/protos');
 
-        /** Presence */
-        client.user.setActivity("[MenuDocs]", {type: "WATCHING"});
+module.exports = class extends CordEvent {
+    constructor(client) {
+        super(client, {
+            name: 'ready'
+        });
+    };
 
-        /** Logging */
-        client.log.info("Logged In.");
+    async run() {      
+        let client = this.client;
+        client.log.info(`Logged In... ${this.registry.commands.size} Commands.`);
 
-        /** Utility Setup */
-        client.embed.setDefaultEmbed(new RichEmbed().setColor("203145").setFooter("[MenuDocs] Advanced").setTimestamp(new Date()));
-        client.plugins.load();
-    }
-}
+        client.embed.setDefault(new MessageEmbed().setColor('BLUE'));
+        client.embed.addEmbed('audio', new MessageEmbed(this.locale.get('commands.music.embed')));
+
+        client.db = new MedaDB();
+        client.audio = new MedaAudio(client, config);
+
+        client.user.setActivity('Music with Lavalink!', { type: 'PLAYING' });
+        this.registry.registerPresence(15000, ["WATCHING|[ MenuDocs ]", "WATCHING|for a!help", "PLAYING|Music with Lavalink!"]);
+
+    };
+};
