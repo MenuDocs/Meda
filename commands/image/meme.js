@@ -1,28 +1,18 @@
-const Discord = require("discord.js");
-const fetch = require("node-fetch");
-module.exports = {
-    config: {
-        name: "meme",
-        desc: "sends a random meme",
-        group: "image",
-        usage: "",
-        aliases: [],
-        guildOnly: false,
-        ownerOnly: false,
-        userPerms: [],
-        clientPerms: []
-    },
+const { CordCommand } = require('cordclient');
+const fetch = require('node-fetch');
+module.exports = class extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: "meme",
+            desc: "sends a random meme",
+            group: "image"
+        });
+    };
 
-    /**
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').Message} message
-     * @param {String[]} args
-     */
-    run: async (client, message, args) => {
-        fetch("https://some-random-api.ml/meme")
-            .then(res => res.json())
-            .then(data => {
-                message.channel.send(client.embed.image(data.url).setAuthor(client.user.username, client.user.displayAvatarURL));
-            });
-    }
-}
+    async run(message, args, client) {
+        fetch('https://apis.duncte123.me/meme')
+        .then(res => res.json()).then(({ data }) => {
+            message.channel.send(client.embed.image(data.image).setTitle(data.title).setURL(data.url));
+        });
+    };
+};

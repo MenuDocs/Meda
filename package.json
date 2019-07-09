@@ -1,38 +1,16 @@
 {
-  "name": "menudocs-advanced",
-  "version": "1.2.5",
-  "description": "Nothing Here",
+  "name": "meda",
+  "version": "1.1.0",
   "main": "index.js",
   "dependencies": {
-    "betalogger": "^1.6.1",
-    "discord.js": "github:discordjs/discord.js",
-    "discord.js-lavalink": "github:MrJacz/discord.js-lavalink#v3",
-    "glob": "^7.1.4",
-    "lodash": "^4.17.11",
-    "mongoose": "^5.5.11",
-    "simple-youtube-api": "^5.1.1"
+    "@sentry/node": "^5.4.3",
+    "beautify": "0.0.8",
+    "common-tags": "^1.8.0",
+    "cordclient": "^0.2.3-beta",
+    "mongoose": "^5.6.0",
+    "simple-youtube-api": "^5.2.0",
+    "discord.js": "github:discordjs/discord.js"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "node ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MenuDocs/Advanced-Bot.git"
-  },
-  "keywords": [
-    "client",
-    "menudocs",
-    "discord.js",
-    "defycentral",
-    "melike2d",
-    "connor",
-    "duncte"
-  ],
   "author": "MeLike2D",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/MenuDocs/Advanced-Bot/issues"
-  },
-  "homepage": "https://github.com/MenuDocs/Advanced-Bot#readme"
+  "license": "GPL-3.0"
 }

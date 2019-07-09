@@ -1,30 +1,22 @@
-module.exports = {
-    config: {
-        name: "resume",
-        desc: "resumes the current player",
-        usage: "",
-        group: "music",
-        aliases: [],
-        guildOnly: true,
-        ownerOnly: false,
-        userPerms: [],
-        clientPerms: []
-    },
+const { CordCommand } = require('cordclient');
+module.exports = class extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: "resume",
+            desc: "resumes the current player.",
+            group: "music",
+            guildBound: true,
+        });
+    };
 
-    /**
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').Message} message
-     * @param {String[]} args
-     */
-    run: async (client, message, args) => {
-        let audio = client.audio;
-        let player = audio.get(message.guild.id);
+    async run(message, args, client) {
+        let player = message.guild.player;
 
-        if (!player) return message.send(client.lang.get('commands.music.no_player'), audio.embed);
-        if (!message.member.voice.channel || !message.member.voice.channel.members.has(client.user.id)) return message.send(client.lang.get('commands.music.!in_my_vc'), audio.embed);
-        if (!player.paused) return message.send(client.lang.get('commands.music.!song_paused'), audio.embed);
+        if (!player) return this.send(this.locale.get('commands.music.no_player'), client.audio.embed);
+        if (!player.channel.members.has(message.author.id)) return this.send(this.locale.get('commands.music.!in_my_vc'), client.audio.embed);
+        if (!player.paused) return this.send(this.locale.get('commands.music.!song_paused'), client.audio.embed);
 
-        player.pause(false);
-        return message.send(client.lang.get("commands.music.song_resumed"), audio.embed);
-    }
+        await player.resume();
+        return this.send(this.locale.get('commands.music.song_resumed'), client.audio.embed);
+    };
 };

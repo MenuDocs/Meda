@@ -1,41 +1,25 @@
+const { CordCommand } = require('cordclient');
+module.exports = class extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: "bassboost",
+            desc: "changes the amount of bass boost for the player",
+            usage: "[max|med|low|none]",
+            group: "music",
+            aliases: ['bb'],
+            guildBound: true,
+        });
+    };
 
-module.exports = {
-    config: {
-        name: "bassboost",
-        desc: "enables bass boost for the current player",
-        usage: "[level]",
-        group: "music",
-        aliases: ['bb'],
-        guildOnly: true,
-        ownerOnly: false,
-        userPerms: [],
-        clientPerms: []
-    },
+    async run(message, args, client) {
+        let player = client.audio.get(message.guild.id);
 
-    /**
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').Message} message
-     * @param {String[]} args
-    /**
-     *
-     *
-     * @param {*} client
-     * @param {*} message
-     * @param {*} args
-     * @returns
-     */
-    run: async (client, message, args) => {
-        let audio = client.audio;
-        let player = audio.get(message.guild.id);
-        let levels = { high: 0.25, medium: 0.15, low: 0.10, none: 0 };
+        if (!player) return this.send(this.locale.get('commands.music.no_player'), client.audio.embed);
+        if (!args[0]) return this.send(this.locale.get('commands.music.cur_basslvl').format([player.basslvl.capitalize()]), client.audio.embed);
+        if (!player.channel.members.has(message.author.id)) return this.send(this.locale.get('commands.music.!in_my_vc'), client.audio.embed);
+        if (!['max', 'med', 'low', 'none'].includes(args[0])) return this.send(this.locale.get('commands.music.bass_levels'), client.audio.embed);
 
-        if (!player) return message.send(client.lang.get('commands.music.no_player'), audio.embed);
-        if (!message.member.voice.channel || !message.member.voice.channel.members.has(client.user.id)) return message.send(client.lang.get('commands.music.!in_my_vc'), audio.embed);
-        if (!args[0]) return message.send(client.lang.get('commands.music.cur_basslvl').format([player.basslvl.capatalize()]), audio.embed)
-        if (args[0] !== 'none' && !levels[args[0]]) return message.send(client.lang.get("commands.music.avaliable_lvls").format([Object.keys(levels).join(', ')]), audio.embed);
-
-        player.basslvl = args[0]
-        player.equalizer([ { band: 0, gain: levels[args[0]] }, { band: 1, gain: levels[args[0]] }, { band: 2, gain: levels[args[0]] } ]);
-        return message.send(client.lang.get("commands.music.new_basslvl").format([args[0].capatalize()]), audio.embed)
-    }
+        player.filter('bassboost', args[0]);
+        return this.send(this.locale.get("commands.music.new_basslvl").format([args[0].capitalize()]), client.audio.embed)
+    };
 };

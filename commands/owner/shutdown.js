@@ -1,21 +1,17 @@
-module.exports = {
-    config: {
-        name: 'shutdown',
-        desc: 'correctly shuts off the bot',
-        group: 'owner',
-        usage: "",
-        aliases: [],
-        guildOnly: false,
-        ownerOnly: true,
-        userPerms: [],
-        clientPerms: []
-    },
+const { CordCommand } = require('cordclient');
+module.exports = class extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: "shutdown",
+            desc: "correctly shuts down the bot.",
+            group: "owner",
+            ownerBound: true
+        });
+    };
 
-    run: async (client, message, args) => {
-
-        if(client.audio) await client.audio.lavalink.players.forEach(player => client.audio.lavalink.leave(player.id));
-        await message.send(`**Shutting Down...**`);
+    async run(message, args, client) {
+        await this.send(`**<:yes:586781018653196289> Shutting down...**`);
+        client.destroy();
         process.exit(0);
-
-    }
+    };
 };

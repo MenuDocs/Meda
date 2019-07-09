@@ -1,37 +1,28 @@
-module.exports = {
-    config: {
-        name: "skip",
-        desc: "skips the current playing song in the queue.",
-        group: "music",
-        usage: "",
-        aliases: [],
-        guildOnly: true,
-        ownerOnly: false,
-        userPerms: [],
-        clientPerms: [],
-    },
+const { CordCommand } = require("cordclient");
+module.exports = class extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: "skip",
+            desc: "skips the current song.",
+            group: "music",
+            guildBound: true
+        });
+    };
 
-    /**
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').Message} message
-     * @param {String[]} args
-     */
-    run: async (client, message, args) => {
-        let audio = client.audio;
-        let voice = message.member.voice;
-        let player = client.audio.get(message.guild.id);
-        let required = Math.round((voice.channel.members.filter(m => !m.user.bot)).size / 2);
+    async run(message, args, client) {
+        let player = message.guild.player;        
+        let required = Math.round((player.channel.members.filter(m => !m.user.bot)).size / 2);
 
-        if (!player) return message.send(client.lang.get('commands.music.no_player'), audio.embed);
-        if (!message.member.voice.channel || !message.member.voice.channel.members.has(client.user.id)) return message.send(client.lang.get('commands.music.!in_my_vc'), audio.embed);
+        if (!player) return this.send(this.locale.get("commands.music.no_player"), client.audio.embed);
+        if (!player.channel.members.has(message.author.id)) return this.send(this.locale.get("commands.music.!in_my_vc"), client.audio.embed);
+        if (player.current.requester === message.author.id) return player.stop();
 
-        if (player.reqs.get(player.current.track) === message.author.id) return audio.skip(message);
-        if (voice.channel.members.filter(m => !m.user.bot).size > 2) {
-            let votes = player.current.votes;
-            if (votes.includes(message.author.id)) return message.send(client.lang.get('commands.music.already_voted').format([message.member]), audio.embed);
-            votes.push(message.author.id);
-            if (votes.length >= required) return audio.skip(message);
-            return message.send(client.lang.get('commands.music.skip_voted'), audio.embed)
-        } else return audio.skip(message);
-    }
+        if (player.channel.members.filter(m => !m.user.bot).size > 2) {
+            if (player.current.votes.includes(message.author.id)) return this.send(this.locale.get('commands.music.already_voted').format([message.member]), client.audio.embed);
+            player.current.votes.push(message.author.id);
+            if (player.current.votes.length >= required) return player.stop()
+            return this.send(this.locale.get('commands.music.skip_voted'), client.audio.embed)
+        }
+
+    };
 };

@@ -1,28 +1,18 @@
-const Discord = require("discord.js");
-const fetch = require("node-fetch");
-module.exports = {
-    config: {
-        name: "cat",
-        desc: "sends a random cat picture.",
-        group: "image",
-        usage: "",
-        aliases: ["kitty", "meow", "purr"],
-        guildOnly: false,
-        ownerOnly: false,
-        userPerms: [],
-        clientPerms: []
-    },
+const { CordCommand } = require('cordclient');
+const fetch = require('node-fetch');
+module.exports = class extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: "cat",
+            desc: "sends a random cat picture",
+            group: "image"
+        });
+    };
 
-    /**
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').Message} message
-     * @param {String[]} args
-     */
-    run: async (client, message, args) => {
-        fetch("https://api.thecatapi.com/v1/images/search")
-            .then(res => res.json())
-            .then(data => {
-                message.channel.send(client.embed.image(data[0].url).setAuthor(client.user.username, client.user.displayAvatarURL));
-            });
-    }
-}
+    async run(message, args, client) {
+        fetch('https://api.thecatapi.com/v1/images/search')
+        .then(res => res.json()).then(res => {
+            message.channel.send(client.embed.image(res[0].url));
+        });
+    };
+};

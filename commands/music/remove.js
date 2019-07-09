@@ -1,40 +1,32 @@
-module.exports = {
-    config: {
-        name: "remove",
-        desc: "removes a song from the queue",
-        group: "music",
-        usage: "<number>",
-        aliases: ["rmv"],
-        guildOnly: true,
-        ownerOnly: false,
-        userPerms: [],
-        clientPerms: []
-    },
+const { CordCommand } = require('cordclient');
+const { remove } = require('lodash');
+module.exports = class extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: "remove",
+            desc: "removes a song from the queue.",
+            usage: "[index]",
+            group: "music",
+            guildBound: true,
+        });
+    };
 
-    /**
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').Message} message
-     * @param {String[]} args
-     */
-    run: async (client, message, args) => {
-        let vc = message.member.voice.channel
-        let audio = client.audio;
-        let player = audio.get(message.guild.id);
+    async run(message, args, client) {
+        let player = message.guild.player;
+        let choice = parseInt(args[0] - 1);
 
-        if (!player) return message.send(client.lang.get('commands.music.no_player'), audio.embed);
+        if (!player) return this.send(this.locale.get('commands.music.no_player'), client.audio.embed);
+        if (!player.channel.members.has(message.author.id)) return this.send(this.locale.get('commands.music.!in_my_vc'), client.audio.embed);
+        if (isNaN(choice) || player.next.length < Number(choice) + 1) return this.send(`**<:no:582718258008817674> Provide an existing song.**`, client.audio.embed);
+        if (player.next[choice].requester !== message.author.id) return this.send(this.locale.get('commands.music.didnt_request'), client.audio.embed);
 
-        let choice = parseInt(args[0] - 1) ? -1 : 0;
-        if (!vc || !vc.members.has(client.user.id)) return message.send(client.lang.get('commands.music.!in_my_vc'), audio.embed);
-        else if (isNaN(choice) || !choice) return message.send(`**<:no:582718258008817674> I need a number.**`, audio.embed);
-        else if (player.next.length < choice + 1) return message.send(`**<:no:582718258008817674> Please pick an existing song.**`, audio.embed);
-        else if (player.reqs.get(player.next[choice].track) !== message.author.id) return message.send(client.lang.get('commands.music.didnt_request'), audio.embed);
         try {
             let song = player.next[choice];
-            await require('lodash').remove(player.next, s => s.title == player.next[choice].title);
-            return message.send(client.lang.get("commands.music.song_removed").format([song.title, song.uri]), audio.embed);
-        } catch (e) {
-            audio.log.error(`Ran into an error: {e}`);
-            return message.send(client.lang.get("commands.music.error").format([e]), audio.embed);
-        };
-    }
+            await remove(player.next, (t, i, n) => i === choice);
+            return this.send(this.locale.get("commands.music.song_removed").format([song.title, song.uri]), client.audio.embed);
+        } catch (error) {
+            audio.log.error(`Ran into an error: ${e}`);
+            return message.send(this.locale.get("commands.music.error").format([e]));
+        }
+    };
 };

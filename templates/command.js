@@ -1,23 +1,19 @@
-const { format, capatalize } = require('../../client/index').StringUtils;
-module.exports = {
-    config: {
-        name: "",
-        desc: "",
-        group: "",
-        usage: "",
-        aliases: [],
-        guildOnly: false,
-        ownerOnly: false,
-        userPerms: [],
-        clientPerms: [],
-    },
+const { CordCommand } = require('cordclient');
+module.exports = class extends CordCommand {
+    constructor(client) {
+        super(client, {
+            name: "",
+            desc: "",
+            nfsw: false,
+            usage: "",
+            group: "",
+            aliases: [],
+            botPerms: [],
+            userPerms: [],
+            guildBound: false,
+            ownerBound: false
+        });
+    };
 
-    /**
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').Message} message
-     * @param {String[]} args
-     */
-    run: async (client, message, args) => {
-        
-    }
-}
+    async run(message, args, client) {};
+};

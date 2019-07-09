@@ -1,8 +1,8 @@
-const { Client, Collection, Message } = require('./client/index');
-const { token } = require('./client/config').discord;
-const client = new Client();
+const { CordClient } = require("cordclient");
 
-["event", "command"].forEach(x => require(`./handlers/${x}`)(client));
-["aliases", "commands"].forEach(x => client[x] = new Collection());
+let client = new CordClient(require("./utils/config.js"));
+client.registry.registerLanguages(require('path').join(__dirname, 'locales'));
+client.registry.registerCommands(require('path').join(__dirname, 'commands'));
+client.registry.registerEvents(require('path').join(__dirname, 'events'));
 
-client.login(token);
+client.login();
